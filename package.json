@@ -1,0 +1,28 @@
+{
+  "name": "mes",
+  "module": "src/api/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch src/api/index.ts",
+    "etl": "bun run src/etl/sync-workcells.ts",
+    "etl:locations": "bun run src/etl/sync-locations.ts",
+    "etl:map": "bun run src/etl/sync-workcell-bay-map.ts",
+    "etl:all": "bun run src/etl/sync-workcells.ts && bun run src/etl/sync-locations.ts && bun run src/etl/sync-workcell-bay-map.ts",
+    "sync:assemblies": "bun run src/etl/cron-assembly-sync.ts",
+    "sync:production": "bun run src/etl/sync-production.ts",
+    "sync:all": "bun run src/etl/cron-assembly-sync.ts && bun run src/etl/sync-production.ts",
+    "test:assembly": "bun run src/etl/test-assembly-fetch.ts",
+    "check:active": "bun run src/etl/check-active-workcells.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.11"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.4.1",
+    "elysia": "^1.4.28"
+  }
+}

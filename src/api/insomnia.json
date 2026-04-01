@@ -1,0 +1,266 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "resources": [
+        {
+            "_id": "env_1",
+            "_type": "environment",
+            "name": "Base Environment",
+            "data": {
+                "base_url": "http://localhost:3000",
+                "workcell_id": "7",
+                "route_step_id": "34086"
+            }
+        },
+        {
+            "_id": "wrk_1",
+            "_type": "workspace",
+            "name": "MES Data Hub",
+            "description": "Local MES dimension layer API"
+        },
+        {
+            "_id": "fld_1",
+            "_type": "request_group",
+            "parentId": "wrk_1",
+            "name": "Health"
+        },
+        {
+            "_id": "req_1",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "Health Check",
+            "method": "GET",
+            "url": "{{ base_url }}/",
+            "parameters": []
+        },
+        {
+            "_id": "fld_2",
+            "_type": "request_group",
+            "parentId": "wrk_1",
+            "name": "Workcells"
+        },
+        {
+            "_id": "req_2",
+            "_type": "request",
+            "parentId": "fld_2",
+            "name": "List All Workcells",
+            "method": "GET",
+            "url": "{{ base_url }}/workcells",
+            "parameters": []
+        },
+        {
+            "_id": "req_3",
+            "_type": "request",
+            "parentId": "fld_2",
+            "name": "Get Workcell Detail",
+            "method": "GET",
+            "url": "{{ base_url }}/workcells/detail",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ workcell_id }}",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_3b",
+            "_type": "request",
+            "parentId": "fld_2",
+            "name": "Get Workcell Summary",
+            "method": "GET",
+            "url": "{{ base_url }}/workcells/summary",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ workcell_id }}",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_3c",
+            "_type": "request",
+            "parentId": "fld_2",
+            "name": "Get Workcell Bays",
+            "method": "GET",
+            "url": "{{ base_url }}/workcells/bays",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ workcell_id }}",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_3d",
+            "_type": "request",
+            "parentId": "fld_2",
+            "name": "Get Workcell Routes",
+            "method": "GET",
+            "url": "{{ base_url }}/workcells/routes",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ workcell_id }}",
+                    "disabled": false
+                },
+                {
+                    "name": "bay",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "_id": "req_3e",
+            "_type": "request",
+            "parentId": "fld_2",
+            "name": "Get Workcell Steps",
+            "method": "GET",
+            "url": "{{ base_url }}/workcells/steps",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ workcell_id }}",
+                    "disabled": false
+                },
+                {
+                    "name": "bay",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "route",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "_id": "fld_3",
+            "_type": "request_group",
+            "parentId": "wrk_1",
+            "name": "Locations"
+        },
+        {
+            "_id": "req_4",
+            "_type": "request",
+            "parentId": "fld_3",
+            "name": "List Plants",
+            "method": "GET",
+            "url": "{{ base_url }}/locations/plants",
+            "parameters": []
+        },
+        {
+            "_id": "req_5",
+            "_type": "request",
+            "parentId": "fld_3",
+            "name": "List All Bays",
+            "method": "GET",
+            "url": "{{ base_url }}/locations/bays",
+            "parameters": [
+                {
+                    "name": "plant",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "_id": "req_6",
+            "_type": "request",
+            "parentId": "fld_3",
+            "name": "List Bays by Plant",
+            "method": "GET",
+            "url": "{{ base_url }}/locations/bays",
+            "parameters": [
+                {
+                    "name": "plant",
+                    "value": "P1",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_7",
+            "_type": "request",
+            "parentId": "fld_3",
+            "name": "List Routes by Plant",
+            "method": "GET",
+            "url": "{{ base_url }}/locations/routes",
+            "parameters": [
+                {
+                    "name": "plant",
+                    "value": "P1",
+                    "disabled": false
+                },
+                {
+                    "name": "bay",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "_id": "req_8",
+            "_type": "request",
+            "parentId": "fld_3",
+            "name": "List Routes by Plant and Bay",
+            "method": "GET",
+            "url": "{{ base_url }}/locations/routes",
+            "parameters": [
+                {
+                    "name": "plant",
+                    "value": "P1",
+                    "disabled": false
+                },
+                {
+                    "name": "bay",
+                    "value": "BAY 801",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_9",
+            "_type": "request",
+            "parentId": "fld_3",
+            "name": "Filter Locations",
+            "method": "GET",
+            "url": "{{ base_url }}/locations",
+            "parameters": [
+                {
+                    "name": "plant",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "bay",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "route",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "step",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "_id": "req_10",
+            "_type": "request",
+            "parentId": "fld_3",
+            "name": "Get Location by ID",
+            "method": "GET",
+            "url": "{{ base_url }}/locations/{{ route_step_id }}",
+            "parameters": []
+        }
+    ]
+}

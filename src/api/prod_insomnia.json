@@ -1,0 +1,169 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "resources": [
+        {
+            "_id": "env_1",
+            "_type": "environment",
+            "name": "Base Environment",
+            "data": {
+                "base_url": "http://localhost:3000",
+                "base_url_mes": "https://mypenm0soap03.corp.jabil.org/meswebapi",
+                "customer_id": "7",
+                "api_key_mes": "f7433d13-2d4c-4702-98bf-d3715c55d8a8"
+            }
+        },
+        {
+            "_id": "wrk_1",
+            "_type": "workspace",
+            "name": "MES Data Hub - Production",
+            "description": "Production endpoints"
+        },
+        {
+            "_id": "fld_1",
+            "_type": "request_group",
+            "parentId": "wrk_1",
+            "name": "Production"
+        },
+        {
+            "_id": "req_1",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "Latest Activity",
+            "method": "GET",
+            "url": "{{ base_url }}/production/latest",
+            "parameters": [
+                {
+                    "name": "plant",
+                    "value": "P1",
+                    "disabled": false
+                },
+                {
+                    "name": "workcell_id",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "limit",
+                    "value": "20",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_2",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "Production Summary",
+            "method": "GET",
+            "url": "{{ base_url }}/production/summary",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ customer_id }}",
+                    "disabled": false
+                },
+                {
+                    "name": "plant",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "bay",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "_id": "req_3",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "Output by Bay",
+            "method": "GET",
+            "url": "{{ base_url }}/production/by-bay",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ customer_id }}",
+                    "disabled": false
+                },
+                {
+                    "name": "plant",
+                    "value": "P1",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_4",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "Output by Assembly",
+            "method": "GET",
+            "url": "{{ base_url }}/production/by-assembly",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ customer_id }}",
+                    "disabled": false
+                },
+                {
+                    "name": "plant",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "bay",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "_id": "req_5",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "Filter Production",
+            "method": "GET",
+            "url": "{{ base_url }}/production",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ customer_id }}",
+                    "disabled": false
+                },
+                {
+                    "name": "plant",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "bay",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "assembly",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "route_step",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "limit",
+                    "value": "100",
+                    "disabled": false
+                },
+                {
+                    "name": "offset",
+                    "value": "0",
+                    "disabled": false
+                }
+            ]
+        }
+    ]
+}

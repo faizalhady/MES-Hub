@@ -1,0 +1,94 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "resources": [
+        {
+            "_id": "env_1",
+            "_type": "environment",
+            "name": "Base Environment",
+            "data": {
+                "base_url": "http://localhost:3000",
+                "base_url_mes": "https://mypenm0soap03.corp.jabil.org/meswebapi",
+                "customer_id": "7",
+                "api_key_mes": "f7433d13-2d4c-4702-98bf-d3715c55d8a8"
+            }
+        },
+        {
+            "_id": "wrk_1",
+            "_type": "workspace",
+            "name": "MES Data Hub - Assemblies",
+            "description": "Assembly endpoints"
+        },
+        {
+            "_id": "fld_1",
+            "_type": "request_group",
+            "parentId": "wrk_1",
+            "name": "Assemblies"
+        },
+        {
+            "_id": "req_1",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "List Assemblies",
+            "method": "GET",
+            "url": "{{ base_url }}/assemblies",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ customer_id }}",
+                    "disabled": false
+                },
+                {
+                    "name": "family",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "search",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "name": "limit",
+                    "value": "100",
+                    "disabled": false
+                },
+                {
+                    "name": "offset",
+                    "value": "0",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_2",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "List Assembly Families",
+            "method": "GET",
+            "url": "{{ base_url }}/assemblies/families",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ customer_id }}",
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "_id": "req_3",
+            "_type": "request",
+            "parentId": "fld_1",
+            "name": "Refresh Assembly Cache",
+            "method": "GET",
+            "url": "{{ base_url }}/assemblies/refresh",
+            "parameters": [
+                {
+                    "name": "workcell_id",
+                    "value": "{{ customer_id }}",
+                    "disabled": false
+                }
+            ]
+        }
+    ]
+}
