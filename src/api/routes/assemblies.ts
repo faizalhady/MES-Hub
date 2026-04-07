@@ -107,7 +107,7 @@ export const assemblyRoutes = new Elysia({ prefix: "/assemblies" })
         if (query.search) { conditions.push("product_number LIKE ?"); params.push(`%${query.search}%`); }
 
         const where = `WHERE ${conditions.join(" AND ")}`;
-        const limit = Number(query.limit) || 100;
+        const limit = query.limit === 'all' ? 999999 : (Number(query.limit) || 100);
         const offset = Number(query.offset) || 0;
 
         const rows = db.query(`
@@ -142,9 +142,15 @@ export const assemblyRoutes = new Elysia({ prefix: "/assemblies" })
 
         const customerId = Number(query.workcell_id);
 
-        if (isCacheStale(customerId)) {
-            await fetchAndCacheAssemblies(customerId);
-        }
+    //    if (isCacheStale(customerId)) {
+    //         // Added try/catch safety net here
+    //         try {
+    //             await fetchAndCacheAssemblies(customerId);
+    //         } catch (error) {
+    //             console.error(`Warning: Failed to fetch fresh MES data for customer ${customerId}. Serving from cache.`, error);
+    //             // The code will naturally continue down to the return statement below
+    //         }
+    //     }
 
         return db.query(`
       SELECT family_name, COUNT(*) as assembly_count

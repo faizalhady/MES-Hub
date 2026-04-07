@@ -13,7 +13,7 @@ const app = new Elysia()
     .use(productionRoutes)
     .use(assemblyRoutes)
     .listen({
-        port: process.env.PORT ?? 3000,
+        port: process.env.PORT ?? 9009,
         idleTimeout: 250, // seconds
     });
 
