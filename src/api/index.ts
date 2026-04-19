@@ -4,6 +4,8 @@ import { assemblyRoutes } from "./routes/assemblies";
 import { locationRoutes } from "./routes/locations";
 import { productionRoutes } from "./routes/production";
 import { workcellRoutes } from "./routes/workcells";
+import { fsmsRoutes } from "./routes/fsms";
+import { ebuildRoutes } from "./routes/ebuild";
 
 const app = new Elysia()
     .use(cors())
@@ -12,6 +14,8 @@ const app = new Elysia()
     .use(locationRoutes)
     .use(productionRoutes)
     .use(assemblyRoutes)
+    .use(fsmsRoutes)
+    .use(ebuildRoutes)
     .listen({
         port: process.env.PORT ?? 9009,
         idleTimeout: 250, // seconds
